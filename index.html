@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrazyMemory</title>
+    <link rel="icon" href="images/faviconIndex.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  
+</head>
+<body>
+    <!-- Video Background -->
+    <video id="video-bg" autoplay muted loop playsinline>
+        <source src="./images/pikachu-hot-tub-chilling.3840x2160.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+
+    <div class="overlay"></div>
+    
+    <!-- div vari -->
+    <div class="main-content">
+        <div class="container d-flex justify-content-center py-5">
+            <h1 class="display-1 text-center bungee-spice-regular" >Crazy Memory</h1>
+        </div>
+
+        <div class="container mt-5 mb-5">
+            <div class="row g-4">
+                
+                <!-- PokeMemory Card -->
+                <div class="col-md-6">
+                    <div class="game-card-poke">
+                        <div class="text-center">
+                            <h1 class="bungee-tint-regular">PokeMemory</h1>
+                            <p class="lead oswald ">Preparati a divertirti nel mondo dei Pokémon giocando infinite battaglie nel suo Memory</p>
+                            <button class="btn btn-custom player-btn">Acchiappali tutti</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Emoji Card -->
+                <div class="col-md-6">
+                    <div class="game-card-emoji">
+                        <div class="text-center">
+                            <h1 class="bungee-tint-regular">Emoji</h1>
+                            <p class="lead oswald">Preparati a scoprire tutte le emoji giocando al suo memory ricco di colori</p>
+                            <button class="btn btn-custom player-btn">Gioca Ora</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center topRank">
+            <h3 class="sixtyfour-convergence">BEST SCORE: </h3>
+        </div>
+    </div>
+
+    <audio id="backgroundMusic" loop>
+        <source src="./audio/Ending Theme - Super Mario World.mp3" type="audio/mpeg">
+      </audio>
+      
+      <button id="musicToggle">▶️ Attiva musica</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
