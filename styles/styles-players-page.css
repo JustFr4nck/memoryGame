@@ -1,0 +1,160 @@
+:root {
+    --primary: #ff4757;
+    --secondary: #ff6b81;
+    --accent: #ff8e53;
+    --dark: #2f3542;
+    --overlay: rgba(30, 35, 42, 0.9);
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+}
+
+.game-title {
+    font-size: 3rem;
+    margin-top: 2rem;
+    color: #ff4b2b;
+    text-transform: uppercase;
+    font-weight: 900;
+    border-bottom: 3px solid #ff4b2b;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+.player-card {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    margin: 1rem 0;
+}
+
+.player-input {
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px solid #444;
+    color: #fff;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    padding: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+
+.player-input::placeholder {
+    color: #aaa;
+}
+
+.player-input:focus {
+    background-color: #333;
+    border-color: #ff416c;
+    box-shadow: 0 0 8px rgba(255, 65, 108, 0.4);
+    color: #fff;
+    outline: none;
+}
+
+
+.player-btn {
+    background: linear-gradient(135deg, #ff4b2b, #ff416c);
+    border: none;
+    padding: 0.75rem 2rem;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 65, 108, 0.4);
+    transition: all 0.3s ease;
+}
+
+.player-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 65, 108, 0.6);
+}
+
+
+.vs-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 2.5rem;
+    position: relative;
+    text-shadow: 0 0 10px #ff416c;
+}
+
+.vs-divider::before,
+.vs-divider::after {
+    content: '';
+    flex: 1;
+    height: 3px;
+    background: linear-gradient(to right, transparent, #ff416c, transparent);
+    margin: 0 10px;
+}
+
+.start-btn {
+    margin-top: 2rem;
+    background: linear-gradient(135deg, #ff4b2b, #ff416c);
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 0 20px rgba(255, 65, 108, 0.5);
+    transition: all 0.3s ease;
+}
+
+.start-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 65, 108, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(255, 65, 108, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 65, 108, 0);
+    }
+}
+
+
+@media (max-width: 768px) {
+    .row.align-items-center {
+        flex-direction: column;
+    }
+
+    .vs-divider {
+        margin: 1.5rem 0;
+        font-size: 2rem;
+    }
+}
