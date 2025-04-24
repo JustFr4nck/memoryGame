@@ -80,6 +80,7 @@
     position: relative;
     overflow: hidden;
     
+    
 }
 
 .player-btn:hover {
@@ -133,7 +134,7 @@
 
 
 .game-card-poke {
-    background-image: url(./images/pokemonFirstPage.jpg);
+    background-image: url(../images/pokemonFirstPage.jpg);
     background-size: cover;
     background-position: center;
     border-radius: 15px;
@@ -149,7 +150,7 @@
 }
 
 .game-card-emoji{
-    background-image: url(./images/emojiFirstPage.jpg);
+    background-image: url(../images/emojiFirstPage.jpg);
     background-size: cover;
     background-position: center;
     color: #FF6D00;
