@@ -1,12 +1,9 @@
 let immagini = [];
 
 let turno = 1;
-let punteggio1 = parseInt(localStorage.getItem('punteggio1')) || 0;
-let punteggio2 = parseInt(localStorage.getItem('punteggio2')) || 0;
-
-
-const player1 = localStorage.getItem('player1') || "Giocatore 1";
-const player2 = localStorage.getItem('player2') || "Giocatore 2";
+let punteggio2 = 0;
+let player1 = "Giocatore 1";
+let player2 = "Giocatore 2";
 
 async function creaArrayImmaginiPokemonRandom() {
   immagini = [];
@@ -84,10 +81,10 @@ function controllaCoppia() {
 
     if (turno === 1) {
       punteggio1++;
-      localStorage.setItem('punteggio1', punteggio1);
+      //localStorage.setItem('punteggio1', punteggio1);
     } else {
       punteggio2++;
-      localStorage.setItem('punteggio2', punteggio2);
+      //localStorage.setItem('punteggio2', punteggio2);
     }
 
     aggiornaPunteggio();
@@ -113,8 +110,6 @@ function controllaCoppia() {
     }, 1000);
   }
 }
-
-
 function aggiornaPunteggio() {
   document.getElementById('score-player1').textContent = `${player1}: ${punteggio1}`;
   document.getElementById('score-player2').textContent = `${player2}: ${punteggio2}`;
@@ -137,11 +132,37 @@ function mostraMessaggio(testo, durata = 1500) {
   }, durata);
 }
 
+function getTema() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('tema') || 
+         sessionStorage.getItem('tema') || 
+         localStorage.getItem('tema');
+}
+
 
 
 document.addEventListener('DOMContentLoaded', async () => {
+   // Verifica il tema anche qui
+    const tema = localStorage.getItem('tema') || sessionStorage.getItem('tema');
+    if (!tema || tema !== 'pokemon') {
+        alert("Accesso non valido alla pagina Pokémon!");
+        window.location.href = '../index.html';
+        return;
+    }
+  
+    // Il resto del tuo codice...
+  
+  // Recupera i dati salvati
+  punteggio1 = parseInt(localStorage.getItem('punteggio1')) || 0;
+  punteggio2 = parseInt(localStorage.getItem('punteggio2')) || 0;
+  player1 = localStorage.getItem('player1') || "Giocatore 1";
+  player2 = localStorage.getItem('player2') || "Giocatore 2";
+  
+  // Aggiorna l'UI
+  aggiornaPunteggio();
+  
+  // Carica e crea le carte
   immagini = await creaArrayImmaginiPokemonRandom();
   creaCarte();
-  aggiornaPunteggio();
   mostraMessaggio(`PLAYER ${turno}`);
 });

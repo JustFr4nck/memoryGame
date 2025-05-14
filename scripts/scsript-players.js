@@ -10,6 +10,40 @@ let player2Ready = false;
 let player1Name = "";
 let player2Name = "";
 
+function getTema() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const temaURL = urlParams.get('tema');
+    
+    return temaURL || 
+           sessionStorage.getItem('tema') || 
+           localStorage.getItem('tema');
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const tema = getTema();
+    console.log("Tema recuperato da:", {
+      url: new URLSearchParams(window.location.search).get('tema'),
+      sessionStorage: sessionStorage.getItem('tema'),
+      localStorage: localStorage.getItem('tema'),
+      final: tema
+    });
+  
+    if (!tema) {
+      console.error("Nessun tema trovato in nessun storage!");
+      alert("Per favore seleziona prima un tema");
+      window.location.href = '../index.html';
+      return;
+    }
+  
+    // Salva il tema per le pagine successive
+    localStorage.setItem('tema', tema);
+    sessionStorage.setItem('tema', tema);
+    
+    // Aggiorna il titolo
+    document.title = `Memory Game - ${tema.toUpperCase()}`;
+  });
+
+
 // Controlla se si può iniziare il gioco
 function checkIfCanStart() {
     if (player1Ready && player2Ready && player1Name !== "" && player2Name !== "" && player1Name.toLowerCase() !== player2Name.toLowerCase()) {
@@ -59,16 +93,26 @@ btn2.addEventListener("click", () => {
     checkIfCanStart();
 });
 
-// Avvia il gioco solo se tutto è ok
-startBtn.addEventListener("click", () => {
-    localStorage.setItem("player1", player1Name);
-    localStorage.setItem("player2", player2Name);
+function salvaGiocatori(event) {
+    event.preventDefault();
 
-    localStorage.setItem("punteggio1", 0);
-    localStorage.setItem("punteggio2", 0);
+    const player1 = document.getElementById('player1').value;
+    const player2 = document.getElementById('player2').value;
 
-    window.location.href = "pokemon.html";
-});
+    localStorage.setItem('player1', player1);
+    localStorage.setItem('player2', player2);
+
+    const tema = localStorage.getItem('tema');
+
+    if (tema === 'pokemon') {
+        window.location.href = 'pokemon.html';
+    } else if (tema === 'emoji') {
+        window.location.href = 'emoji.html';
+    } else {
+        alert('Tema non selezionato!');
+    }
+}
+
 
 // Video di sfondo
 document.addEventListener("DOMContentLoaded", () => {
@@ -85,3 +129,35 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.appendChild(btn);
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Controlla entrambi gli storage con priorità a sessionStorage
+    const tema = sessionStorage.getItem('tema') || localStorage.getItem('tema');
+    console.log("Tema recuperato:", tema, 
+                "\nSessionStorage:", sessionStorage.getItem('tema'),
+                "\nLocalStorage:", localStorage.getItem('tema'));
+
+    if (!tema) {
+        console.error("Storage vuoto! Reindirizzamento...");
+        alert("Per favore seleziona prima un tema");
+        window.location.href = '../index.html';
+        return;
+    }
+    
+    // Aggiorna il titolo per debug
+    document.title = `Memory Game - ${tema.toUpperCase()}`;
+});
+
+// Modifica anche il click handler del pulsante start
+startBtn.addEventListener("click", () => {
+    const tema = getTema(); // Usa la stessa funzione di prima
+    
+    if (tema === 'pokemon') {
+      window.location.href = `pokemon.html?tema=${encodeURIComponent(tema)}`;
+    } else if (tema === 'emoji') {
+      window.location.href = `emoji.html?tema=${encodeURIComponent(tema)}`;
+    } else {
+      alert("Errore: Tema non riconosciuto!");
+      window.location.href = '../index.html';
+    }
+  });

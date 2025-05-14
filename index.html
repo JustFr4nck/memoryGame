@@ -9,6 +9,34 @@
     <link rel="stylesheet" href="./styles/stylesMain.css">
   
 </head>
+<script>
+    // Test avanzato dello storage
+    function testStorage() {
+      try {
+        const testKey = 'storage_test_' + Date.now();
+        localStorage.setItem(testKey, 'test_value');
+        sessionStorage.setItem(testKey, 'test_value');
+        
+        const lsOK = localStorage.getItem(testKey) === 'test_value';
+        const ssOK = sessionStorage.getItem(testKey) === 'test_value';
+        
+        localStorage.removeItem(testKey);
+        sessionStorage.removeItem(testKey);
+        
+        if(!lsOK) console.error("LocalStorage non funziona!");
+        if(!ssOK) console.error("SessionStorage non funziona!");
+        
+        return lsOK && ssOK;
+      } catch(e) {
+        console.error("Errore storage test:", e);
+        return false;
+      }
+    }
+    
+    if(!testStorage()) {
+      alert("ATTENZIONE: Problema con lo storage del browser!");
+    }
+  </script>
 <body>
     <!-- Video Background -->
     <video id="video-bg" autoplay muted loop playsinline>
@@ -33,7 +61,7 @@
                         <div class="text-center">
                             <h1 class="bungee-tint-regular">PokeMemory</h1>
                             <p class="lead oswald ">Preparati a divertirti nel mondo dei Pokémon giocando infinite battaglie nel suo Memory</p>
-                            <button id="buttonPokemon" class="btn btn-custom player-btn" > <a style="text-decoration: none; color: white;" href="./pages/players.html">Acchiappali tutti</a></button>
+                            <button onclick="scegliTema('pokemon')" id="buttonPokemon" class="btn btn-custom player-btn">Acchiappali tutti</button>
                         </div>
                     </div>
                 </div>
@@ -44,7 +72,7 @@
                         <div class="text-center">
                             <h1 class="bungee-tint-regular">Emoji</h1>
                             <p class="lead oswald">Preparati a scoprire tutte le emoji giocando al suo memory ricco di colori</p>
-                            <button id="emojiButton" class="btn btn-custom player-btn" > <a style="text-decoration: none; color: white;" href="./pages/players.html">Gioca Ora</a></button>
+                            <button onclick="scegliTema('emoji')" id="emojiButton" class="btn btn-custom player-btn">Gioca ora</button>
                         </div>
                     </div>
                 </div>
