@@ -158,3 +158,29 @@ body {
         font-size: 2rem;
     }
 }
+
+.btn-active {
+    background: linear-gradient(135deg, #4CAF50, #45a049) !important;
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.6) !important;
+}
+
+.checkmark {
+    display: inline-block;
+    margin-right: 8px;
+    font-weight: bold;
+    animation: checkAppear 0.3s ease;
+}
+
+@keyframes checkAppear {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.player-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.player-btn:active {
+    transform: scale(0.95);
+}
