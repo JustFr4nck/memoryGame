@@ -61,10 +61,11 @@ btn2.addEventListener("click", () => {
 
 // Avvia il gioco solo se tutto è ok
 startBtn.addEventListener("click", () => {
-    localStorage.setItem("memoryGamePlayers", JSON.stringify({
-        player1: player1Name,
-        player2: player2Name
-    }));
+    localStorage.setItem("player1", player1Name);
+    localStorage.setItem("player2", player2Name);
+
+    localStorage.setItem("punteggio1", 0);
+    localStorage.setItem("punteggio2", 0);
 
     window.location.href = "pokemon.html";
 });
